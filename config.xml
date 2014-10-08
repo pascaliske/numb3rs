@@ -40,6 +40,7 @@ version = "1.0.0">
   <preference name="LoadingDialog" value=","/>
   <preference name="LoadUrlTimeoutValue" value="20000" />
   <preference name="disable-cursor" value="false" />
+  <preference name="permissions" value="none"/>
   <gap:platform name="ios" />
   <gap:platform name="android" />
   <gap:platform name="winphone" />
