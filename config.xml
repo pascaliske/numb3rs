@@ -1,67 +1,64 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-	<widget xmlns = "http://www.w3.org/ns/widgets"
-		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id        = ""
-		versionCode="1.0.0"
-		version   = "1.0.0">
-		<name>Numb3rs</name>
-		<description>
-		</description>
-		<author href="http://dev.pascal-iske.de/numb3rs/" email="***">
-        		Pascal Iske & Simon Weiß
-    		</author>
-
-		</author>
-		<preference name="phonegap-version" value="3.6.3" />
-		<preference name="orientation" value="portrait" />
-		<preference name="fullscreen" value="false" />
-		<preference name="target-device" value="universal" />
-		<preference name="webviewbounce" value="true" />
-		<preference name="prerendered-icon" value="true" />
-		<preference name="stay-in-webview" value="true" />
-		<preference name="ios-statusbarstyle" value="default" />
-		<preference name="detect-data-types" value="true" />
-		<preference name="exit-on-suspend" value="false" />
-		<preference name="show-splash-screen-spinner" value="true" />
-		<preference name="auto-hide-splash-screen" value="true" />
-		<preference name="EnableViewportScale" value="true" />
-		<preference name="MediaPlaybackRequiresUserAction" value="false" />
-		<preference name="AllowInlineMediaPlayback" value="false" />
-		<preference name="BackupWebStorage" value="cloud" />
-		<preference name="TopActivityIndicator" value="gray" />
-		<preference name="KeyboardDisplayRequiresUserAction" value="false" />
-		<preference name="HideKeyboardFormAccessoryBar" value="false" />
-		<preference name="SuppressesIncrementalRendering" value="false" />
-		<preference name="android-minSdkVersion" value="7" />
-		<preference name="android-installLocation" value="internalOnly" />
-		<preference name="SplashScreenDelay" value="5000" />
-		<preference name="ErrorUrl" value=""/>
-		<preference name="BackgroundColor" value="0x000000"/>
-		<preference name="KeepRunning" value="true"/>
-		<preference name="DisallowOverscroll" value="false"/>
-		<preference name="LoadingDialog" value=","/> 
-		<preference name="LoadUrlTimeoutValue" value="20000" />
-		<preference name="disable-cursor" value="false" />
-		<gap:platform name="ios" />
-		<gap:platform name="android" />
-		<gap:platform name="winphone" />
-		<gap:plugin name="org.apache.cordova.batterystatus.BatteryListener"  />
-		<gap:plugin name="org.apache.cordova.camera.CameraLauncher"  />
-		<gap:plugin name="org.apache.cordova.console"  />
-		<gap:plugin name="org.apache.cordova.contacts.ContactManager"  />
-		<gap:plugin name="org.apache.cordova.device.Device"  />
-		<gap:plugin name="org.apache.cordova.device-orientation"  />
-		<gap:plugin name="org.apache.cordova.devicemotion.AccelListener"  />
-		<gap:plugin name="org.apache.cordova.dialogs.Notification"  />
-		<gap:plugin name="org.apache.cordova.file.FileUtils"  />
-		<gap:plugin name="org.apache.cordova.filetransfer.FileTransfer"  />
-		<gap:plugin name="org.apache.cordova.GeoBroker"  />
-		<gap:plugin name="org.apache.cordova.globalization.Globalization"  />
-		<gap:plugin name="org.apache.cordova.inappbrowser.InAppBrowser"  />
-		<gap:plugin name="org.apache.cordova.media.AudioHandler"  />
-		<gap:plugin name="org.apache.cordova.mediacapture.Capture"  />
-		<gap:plugin name="org.apache.cordova.networkinformation.NetworkManager"  />
-		<gap:plugin name="org.apache.cordova.splashscreen.SplashScreen"  />
-		<gap:plugin name="org.apache.cordova.vibration.Vibration"  />
-	</widget>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+xmlns:gap = "http://phonegap.com/ns/1.0"
+id = ""
+versionCode="1.0.0"
+version = "1.0.0">
+<name>Numb3rs</name>
+<description>
+</description>
+<author href="http://dev.pascal-iske.de/numb3rs/" email="***">
+Pascal Iske Simon Weiß
+</author>
+<preference name="phonegap-version" value="3.6.3" />
+<preference name="orientation" value="portrait" />
+<preference name="fullscreen" value="false" />
+<preference name="target-device" value="universal" />
+<preference name="webviewbounce" value="true" />
+<preference name="prerendered-icon" value="true" />
+<preference name="stay-in-webview" value="true" />
+<preference name="ios-statusbarstyle" value="default" />
+<preference name="detect-data-types" value="true" />
+<preference name="exit-on-suspend" value="false" />
+<preference name="show-splash-screen-spinner" value="true" />
+<preference name="auto-hide-splash-screen" value="true" />
+<preference name="EnableViewportScale" value="true" />
+<preference name="MediaPlaybackRequiresUserAction" value="false" />
+<preference name="AllowInlineMediaPlayback" value="false" />
+<preference name="BackupWebStorage" value="cloud" />
+<preference name="TopActivityIndicator" value="gray" />
+<preference name="KeyboardDisplayRequiresUserAction" value="false" />
+<preference name="HideKeyboardFormAccessoryBar" value="false" />
+<preference name="SuppressesIncrementalRendering" value="false" />
+<preference name="android-minSdkVersion" value="7" />
+<preference name="android-installLocation" value="internalOnly" />
+<preference name="SplashScreenDelay" value="5000" />
+<preference name="ErrorUrl" value=""/>
+<preference name="BackgroundColor" value="0x000000"/>
+<preference name="KeepRunning" value="true"/>
+<preference name="DisallowOverscroll" value="false"/>
+<preference name="LoadingDialog" value=","/>
+<preference name="LoadUrlTimeoutValue" value="20000" />
+<preference name="disable-cursor" value="false" />
+<gap:platform name="ios" />
+<gap:platform name="android" />
+<gap:platform name="winphone" />
+<gap:plugin name="org.apache.cordova.batterystatus.BatteryListener" />
+<gap:plugin name="org.apache.cordova.camera.CameraLauncher" />
+<gap:plugin name="org.apache.cordova.console" />
+<gap:plugin name="org.apache.cordova.contacts.ContactManager" />
+<gap:plugin name="org.apache.cordova.device.Device" />
+<gap:plugin name="org.apache.cordova.device-orientation" />
+<gap:plugin name="org.apache.cordova.devicemotion.AccelListener" />
+<gap:plugin name="org.apache.cordova.dialogs.Notification" />
+<gap:plugin name="org.apache.cordova.file.FileUtils" />
+<gap:plugin name="org.apache.cordova.filetransfer.FileTransfer" />
+<gap:plugin name="org.apache.cordova.GeoBroker" />
+<gap:plugin name="org.apache.cordova.globalization.Globalization" />
+<gap:plugin name="org.apache.cordova.inappbrowser.InAppBrowser" />
+<gap:plugin name="org.apache.cordova.media.AudioHandler" />
+<gap:plugin name="org.apache.cordova.mediacapture.Capture" />
+<gap:plugin name="org.apache.cordova.networkinformation.NetworkManager" />
+<gap:plugin name="org.apache.cordova.splashscreen.SplashScreen" />
+<gap:plugin name="org.apache.cordova.vibration.Vibration" />
+</widget>
