@@ -51,7 +51,9 @@
 		});
 		
 		// touch events
-		$('.square', this).hammer().bind("tap", triggerClick($(this)));
+		$('.square').hammer().bind("tap", function() {
+			triggerClick($(this));
+		});
 
 		// main methods
 		function triggerClick(el) {
