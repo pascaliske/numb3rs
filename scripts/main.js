@@ -59,6 +59,8 @@
 		   triggerClick($(this));
 		});*/
 
+		var isEvent = false;
+
 		$('.square').click(function(){
 			if(!isEvent){
 			  isEvent = true;
