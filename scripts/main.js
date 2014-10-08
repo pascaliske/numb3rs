@@ -51,8 +51,12 @@
 		});
 		
 		// touch events
-		$('.square').hammer().bind("tap", function() {
+		/*$('.square').hammer().bind('tap', function(event) {
 			triggerClick($(this));
+		});*/
+
+		$('.square').on('touchstart', function(event) {
+		   triggerClick($(this));
 		});
 
 		// main methods
