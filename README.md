@@ -2,5 +2,5 @@ numb3rs
 =======
 
 Simple game with numbers.
-<br>powered by Pascal & Simon 
-<br>known by Fr. Reichert
+
+(powered by Pascal & Simon, known by Fr. Reichert)
