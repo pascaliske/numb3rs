@@ -1,0 +1,40 @@
+#hint {
+	width: 80px;
+	height: 30px;
+	margin: 20px auto;
+	line-height: 30px;
+	cursor: pointer;
+	text-align: center;
+	background: @bgColor;
+}
+#grid {
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+	background: @bgColor;
+	.row {
+		width: 600px;
+		height: 57px;
+		.square {
+			width: 57px;
+			height: 57px;
+			border: 1px @borders solid;
+			text-align: center;
+			font-size: 15pt;
+			cursor: pointer;
+			.transition(.3s);
+			&.start {
+				background: red !important;
+			}
+			&.actual {
+				background: yellow;
+			}
+			&.hint {
+				background: green;
+			}
+			&.filled {
+				background: darken(@bgColor, 15%);
+			}
+		}
+	}
+}
