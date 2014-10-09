@@ -1,7 +1,9 @@
 #header {
 	width: 405px;
 	margin: 0 auto;
-	.display {
+	z-index: 999;
+
+	.box {
 		width: 100px;
 		height: 100px;
 		line-height: 100px;
@@ -33,20 +35,6 @@
 		}
 	}
 
-	.score {
-		width: 100px;
-		height: 100px;
-		line-height: 100px;
-		text-align: center;
-		font-size: 50pt;
-		margin: 15px 0;
-		background: @bgColor;
-		float: left;
-	}
-
-	.clear {
-		clear: both;
-	}
 }
 
 #grid {
@@ -80,4 +68,8 @@
 			}
 		}
 	}
+}
+
+.clear {
+	clear: both;
 }

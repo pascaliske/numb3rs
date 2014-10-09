@@ -2,20 +2,16 @@
 <html>
 	<head>
 		<title>Numb3rs</title>
-
 		<meta charset="utf-8" />
-
-		<!-- <meta name="viewport"  content="width=device-width, height=device-height, initial-scale=0.5, user-scalable=1" /> -->
-		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-
+		<meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 		<link rel="stylesheet" type="text/css" href="main.min.css" />
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script type="text/javascript" src="scripts/hammer.js"></script>
-		<script type="text/javascript" src="scripts/main.js"></script>
+		<script type="text/javascript" src="scripts/main.min.js"></script>
 	</head>
 	<body>
-		<div id="header">
-			<div class="display">0</div>
+		<header id="header">
+			<h1>Hundr3d</h1>
+			<div class="display box">0</div>
 			<div class="controls">
 				<h3>Controls:</h3>
 				<div id="reset" class="btn inactive">Reset</div>
@@ -24,9 +20,9 @@
 				<div id="undo" class="btn inactive">Undo</div>
 				<div id="redo" class="btn inactive">Redo</div>
 			</div>
-			<div class="score">0</div>
-			<span class="clear"></span>
-		</div>
+			<div class="score box">0</div>
+		</header>
+		<div class="clear"></div>
 		<table cellpadding="0" id="grid">
 			<tr id="r0" class="row">
 				<td id="00" class="square">00</td>
