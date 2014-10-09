@@ -1,12 +1,54 @@
-#hint {
-	width: 80px;
-	height: 30px;
-	margin: 20px auto;
-	line-height: 30px;
-	cursor: pointer;
-	text-align: center;
-	background: @bgColor;
+#header {
+	width: 405px;
+	margin: 0 auto;
+	.display {
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		font-size: 50pt;
+		margin: 15px 0;
+		background: @bgColor;
+		float: left;
+	}
+
+	.controls {
+		width: 165px;
+		margin: 19px 20px;
+		float: left;
+		.btn {
+			width: 80px;
+			height: 30px;
+			margin: 2px auto;
+			line-height: 30px;
+			cursor: pointer;
+			text-align: center;
+			display: inline-block;
+			background: @bgColor;
+			opacity: 1;
+			.transition();
+			&.inactive {
+				opacity: .5;
+			}
+		}
+	}
+
+	.score {
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		font-size: 50pt;
+		margin: 15px 0;
+		background: @bgColor;
+		float: left;
+	}
+
+	.clear {
+		clear: both;
+	}
 }
+
 #grid {
 	width: 600px;
 	height: 600px;
@@ -24,10 +66,11 @@
 			cursor: pointer;
 			.transition(.3s);
 			&.start {
-				background: red !important;
+				background: darken(@bgColor, 40%) !important;
+				color: white;
 			}
 			&.actual {
-				background: yellow;
+				background: darken(@bgColor, 30%);
 			}
 			&.hint {
 				background: green;

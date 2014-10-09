@@ -35,8 +35,11 @@
 (function ($, window, undefined) {
 	$.fn.numb3rs = function(settings) {
 		// global vars
+		var isEvent = false;
 		var startSquare = null;
 		var number = 1;
+		var highscore = 0;
+		var squareHistory = new Array();
 		var lastSquare;
 		var row = '';
 		var square;
@@ -50,6 +53,27 @@
 		$('#hint').on('click', function() {
 			hint(square);
 		});
+
+		$('#reset').on('click', function() {
+			if(confirm('Do you really want to reset this game?')) {
+				resetGame();	
+			}
+		});
+
+		$('#undo').on('click', function() {
+			undoAction();
+		});
+
+		$('#redo').on('click', function() {
+			var actualIndex = squareHistory.indexOf(actualSquare);
+
+			if(actualIndex === parseInt(squareHistory.length-1)) {
+				error('nicht möglich!');
+			} else {
+				alert('redo active');
+				//redoAction();
+			}
+		});
 		
 		// touch events
 		/*$('.square').hammer().bind('tap', function(event) {
@@ -59,8 +83,6 @@
 		/*$('.square').on('touchstart', function(event) {
 		   triggerClick($(this));
 		});*/
-
-		var isEvent = false;
 
 		$('.square').click(function(){
 			if(!isEvent){
@@ -75,7 +97,10 @@
 		// main methods
 		function triggerClick(el) {
 			// DEBUG
-			log('-------- debug --------');
+			if(settings.debug) {
+				log('-------- debug --------');
+				log('number: '+number);
+			}
 
 			// reset all hints
 			resetHints();
@@ -86,28 +111,25 @@
 			actualRow = getRowOfSquare(actualSquare);
 			actualPlace = getPlaceInRow(actualSquare);
 
-			// DEBUG
-			log('row: '+actualRow);
-			log('place in row: '+actualPlace);
-
 			// check if start square is set
 			if(startSquare === null) {
+				// DEBUG
+				if(settings.debug) {
+					log('actualSquare: '+actualSquare+' (actualRow: '+actualRow+', actualRow: '+actualRow+' (start-square))');
+				}
 				// set start square
 				setStart(actualSquare);
 				setSquare(actualSquare);
-
-				// DEBUG
-				log('actual square:');
-				log('row: '+row+', square: '+actualSquare+' (start-square)');
 			} else {
 				// checks if clicked square is correct
 				if(correctSquare(actualSquare)) {
+					// DEBUG
+					if(settings.debug) {
+						log('actual square: '+actualSquare+' (row: '+actualRow+', place in row: '+actualRow+' (next-square))');
+					}
+
 					// sets clicked square
 					setSquare(actualSquare);
-					
-					// DEBUG
-					log('actual square:');
-					log('row: '+row+', square: '+actualSquare+' (next-square)');
 				} else {
 					// set hints to last square
 					hint(lastSquare);
@@ -116,22 +138,38 @@
 			}
 
 			// DEBUG
-			log('------ end debug ------');
+			if(settings.debug) {
+				log('history:');
+				for (var i = 0; i < squareHistory.length; i++) {
+					log('-- '+squareHistory[i]);
+				};
+				log('number: '+number);
+				log('------ end debug ------');
+			}
 		}
 
 		function setStart(actualSquare) {
 			startSquare = actualSquare;
+			// fade in buttons
+			$('#reset, #undo').removeClass('inactive');
 			$('#grid #'+actualSquare).addClass('start');
 		}
 
 		function setSquare(actualSquare) {
 			// check if already filled
 			if(!$('#grid #'+actualSquare).hasClass('filled')) {
-				// not filled
+				// display hints for actual square
 				hint(actualSquare);
 				$('#grid #'+actualSquare).html(number);
 				$('#grid #'+actualSquare).addClass('filled').attr('data-value', number);
+				
+				// write actual square to history and in a var
+				squareHistory.push(actualSquare);
 				lastSquare = actualSquare;
+				
+				// change counters
+				changeCounter(number);
+				changeHighscore(actualSquare);
 				number++;
 			} else {
 				// filled
@@ -180,20 +218,24 @@
 				var lastRow = getRowOfSquare(lastSquare);
 
 				var correctSquares = new Array(
-					parseInt(lastRow - 3),
-					parseInt(lastRow + 3),
+					/*parseInt(actualRow - 3),
+					parseInt(actualRow + 3),
 					
 					actualRow === toString(lastRow + actualPlace === parseInt(lastPlace - 3)),
 					actualRow === toString(lastRow + actualPlace === parseInt(lastPlace + 3)),
 					actualRow === toString(parseInt(lastRow - 2) + actualPlace === parseInt(lastPlace - 2)),
 					actualRow === toString(parseInt(lastRow - 2) + actualPlace === parseInt(lastPlace + 2)),
 					actualRow === toString(parseInt(lastRow + 2) + actualPlace === parseInt(lastPlace - 2)),
-					actualRow === toString(parseInt(lastRow + 2) + actualPlace === parseInt(lastPlace + 2))
+					actualRow === toString(parseInt(lastRow + 2) + actualPlace === parseInt(lastPlace + 2))*/
 				);
-				log('correct squares:');
+				if(settings.debug) {
+					log('correct squares:');
+				}
 				for (var i = 0; i < correctSquares.length; i++) {
 					if(!$(correctSquares[i]).hasClass('filled')) {
-						log(i+' '+correctSquares[i]);
+						if(settings.debug) {
+							log(i+' '+correctSquares[i]);
+						}
 						$('#grid #'+correctSquares[i]).addClass('hint');
 					}
 				};
@@ -210,6 +252,58 @@
 			});
 		}
 
+		function undoAction() {
+			var actualIndex = squareHistory.indexOf(actualSquare);
+
+			if(confirm('Do you really want to undo the last square?')) {
+				// set counter
+				number--;
+				changeCounter(parseInt(number - 1));
+
+				// set to last square
+				$('#'+lastSquare).removeClass('filled').removeAttr('data-value').html('');
+				lastSquare = squareHistory[parseInt(actualIndex - 1)];
+			} else {
+				// cancel undo action
+				number++;
+				log('(after) number: '+number);
+			}
+		}
+
+		//------- has errors!
+		function redoAction() {
+			var actualIndex = squareHistory.indexOf(actualSquare);
+
+			// set counter
+			number++;
+			changeCounter(parseInt(number + 1));
+
+			// set to last square
+			$('#'+lastSquare).removeClass('filled').removeAttr('data-value').html('');
+			lastSquare = squareHistory[parseInt(actualIndex - 1)];
+		} //----- has errors!
+
+		function resetGame() {
+			// reset all vars
+			startSquare = null;
+			number = 1;
+			lastSquare = undefined;
+			highscore = 0;
+			squareHistory = new Array();
+
+			// reset counter
+			$('#header .display').html('0');
+
+			// reset grid
+			$('td').each(function() {
+				$(this).removeClass('filled');
+				$(this).removeClass('hint');
+				$(this).removeClass('start');
+				$(this).removeAttr('data-value');
+				$(this).html('');
+			});
+		}
+
 		function getRowOfSquare(inputSquare) {
 			split = (inputSquare+'').split('');
 			var output = parseInt(split[0]);
@@ -222,6 +316,20 @@
 			return output;
 		}
 
+		function changeCounter(n) {
+			// change counter
+			$('#header .display').html(n);
+		}
+
+		function changeHighscore(squareNumber) {
+			if(parseInt(squareNumber % 2) === 0) {
+				highscore = parseInt(highscore + 20);
+			} else {
+				highscore = parseInt(highscore + 15);
+			}
+			$('#header .score').html(highscore);
+		}
+
 		function error(m) {
 			if(settings.debug) {
 				console.error(m);
@@ -229,20 +337,14 @@
 			alert(m);
 		}
 
-		// ------------------- MSG ------------------- //
 		function log(m) {
+			// push msg to console
 			console.log(m);
 		}
 	};
 
 	$.fn.numb3rs.defaults = {
 		// debug methods
-		debug: false,
-		//play on startup
-		autoplay: true,
-		//continious play
-		loop: true,
-		//play backwards,
-		backwards: false
+		debug: false
 	};
 })(jQuery);
