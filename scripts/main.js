@@ -10,6 +10,7 @@
 		var row = '';
 		var square;
 		var placeInRow;
+		var undoCount = 0;
 
 		// click events
 		$('.square', this).on('click', function() {
@@ -201,19 +202,23 @@
 
 		function undoAction() {
 			var actualIndex = squareHistory.indexOf(actualSquare);
+			if(undoCount < 2) {
+				if(confirm('Do you really want to undo the last square?')) {
+					// set counter
+					number--;
+					changeCounter(parseInt(number - 1));
 
-			if(confirm('Do you really want to undo the last square?')) {
-				// set counter
-				number--;
-				changeCounter(parseInt(number - 1));
-
-				// set to last square
-				$('#'+lastSquare).removeClass('filled').removeAttr('data-value').html('');
-				lastSquare = squareHistory[parseInt(actualIndex - 1)];
+					// set to last square
+					$('#'+lastSquare).removeClass('filled').removeAttr('data-value').html('');
+					lastSquare = squareHistory[parseInt(actualIndex - 1)];
+					undoCount++;
+				} else {
+					// cancel undo action
+					number++;
+					log('(after) number: '+number);
+				}
 			} else {
-				// cancel undo action
-				number++;
-				log('(after) number: '+number);
+				error("You have only two undo's per round!");
 			}
 		}
 
@@ -233,9 +238,10 @@
 		function resetGame() {
 			// reset all vars
 			startSquare = null;
-			number = 1;
 			lastSquare = undefined;
 			highscore = 0;
+			undoCount = 0;
+			number = 1;
 			squareHistory = new Array();
 
 			// reset counter
