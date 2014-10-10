@@ -12,6 +12,11 @@
 		var placeInRow;
 		var undoCount = 0;
 
+		var timer = $('#timer').FlipClock({
+			clockFace: 'MinuteCounter',
+			autoStart: false
+		});
+
 		// click events
 		$('.square', this).on('click', function() {
 			triggerClick($(this));
@@ -68,6 +73,7 @@
 				// set start square
 				setStart(actualSquare);
 				setSquare(actualSquare);
+				timer.start();
 			} else {
 				// checks if clicked square is correct
 				if(correctSquare(actualSquare)) {
@@ -244,8 +250,11 @@
 			number = 1;
 			squareHistory = new Array();
 
+			timer.stop();
+			timer.setTime(0);
+
 			// reset counter
-			$('#header .display').html('0');
+			$('#header .display, #header .score').html('0');
 
 			// reset grid
 			$('td').each(function() {
