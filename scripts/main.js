@@ -18,11 +18,14 @@
 		});
 
 		// click events
-		$('.square', this).on('click', function() {
+	/*	$('.square', this).on('click', function() {
 			triggerClick($(this));
 		}); 
 		$('.square', this).hammer().on('tap', function(){
  			triggerClick($(this));
+		});*/
+		$('.square').click( function(){
+			triggerClick($(this));
 		});
 
 		$('#hint').on('click', function() {
