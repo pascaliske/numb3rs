@@ -21,6 +21,9 @@
 		$('.square', this).on('click', function() {
 			triggerClick($(this));
 		}); 
+		$('.square').hammer().on('tap', function(){
+ 			triggerClick($(this));
+		});
 
 		$('#hint').on('click', function() {
 			hint(square);
