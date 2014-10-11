@@ -21,7 +21,7 @@
 		$('.square', this).on('click', function() {
 			triggerClick($(this));
 		}); 
-		$('.square').hammer().on('tap', function(){
+		$('.square', this).hammer().on('tap', function(){
  			triggerClick($(this));
 		});
 
