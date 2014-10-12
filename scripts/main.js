@@ -17,16 +17,14 @@
 			autoStart: false
 		});
 
-		// click events
-	/*	$('.square', this).on('click', function() {
-			triggerClick($(this));
-		}); 
+		// click events 
 		$('.square', this).hammer().on('tap', function(){
  			triggerClick($(this));
-		});*/
-		$('.square').click( function(){
-			triggerClick($(this));
 		});
+
+		/*$('.square').click( function(){
+			triggerClick($(this));
+		});*/
 
 		$('#hint').on('click', function() {
 			hint(square);
