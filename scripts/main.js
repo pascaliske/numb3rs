@@ -18,7 +18,7 @@
 		});
 
 		// click events 
-		$('.square').hammer().on('tap', function(event){
+		$('.square').on('touchstart', function(event){
  			var element = $(this);
  			log(element);
  			//triggerClick($(this));
@@ -26,7 +26,15 @@
 
 		/*$('.square').click( function(){
 			triggerClick($(this));
-		});*/
+		});
+		$('body').on('touchstart', 'a', function(event) {
+            $(event.target).addClass('tappable-active');
+        });
+        $('body').on('touchend', 'a', function(event) {
+            $(event.target).removeClass('tappable-active');
+        });
+		
+		*/
 
 		$('#hint').on('click', function() {
 			hint(square);
