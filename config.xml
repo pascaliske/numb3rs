@@ -6,7 +6,7 @@
   <author href="http://dev.pascal-iske.de/numb3rs/" email="***">
   Pascal Iske, Simon Weiß
   </author>
-  <preference name="phonegap-version" value="3.6.3" />
+  <preference name="phonegap-version" value="3.7.0" />
   <preference name="orientation" value="portrait" />
   <preference name="fullscreen" value="false" />
   <preference name="target-device" value="universal" />
